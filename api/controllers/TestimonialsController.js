@@ -14,7 +14,7 @@ const getServiceRating = async (serviceId) => {
         let sumRating = 0;
         for (let i of serviceRating) {
           sumRating += parseInt(i.rating);
-        }
+        } 
         return (sumRating / serviceRating.length).toFixed(1);
       }
       return serviceRating[0].rating;

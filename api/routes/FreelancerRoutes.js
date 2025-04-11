@@ -20,7 +20,7 @@ route.get("/dashboard", VerifyToken, async (req, res) => {
       return res.json({ status: 403, msg: dashboard });
     } else {
       return res.json({ status: 200, dashboard });
-    }
+    } 
   } catch (error) {
     return res.json({ status: 505, msg: "Error Occured: " + error.message });
   }

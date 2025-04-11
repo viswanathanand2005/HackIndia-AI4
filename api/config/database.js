@@ -12,4 +12,4 @@ const MongoConnect = () => {
   });
 };
 
-module.exports = MongoConnect;
+module.exports = MongoConnect; 
