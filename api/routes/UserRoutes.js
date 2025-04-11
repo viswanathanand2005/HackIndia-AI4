@@ -18,7 +18,7 @@ route.post("/register", createProfileUploadImage, async (req, res) => {
   try {
     const createdUser = await registerUser(
       fullName,
-      age,
+      age, 
       email,
       username,
       password,

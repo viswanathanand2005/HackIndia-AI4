@@ -10,13 +10,13 @@ const userExists = async (email) => {
 };
 const findUsers = async () => {
   const allUsers = await User.find();
-  return allUsers;
+  return allUsers; 
 };
 const findUserById = async (id) => {
   const selectedUser = await User.findById(id);
   if (selectedUser) return selectedUser;
   else return null;
-};
+}; 
 const registerUser = async (
   fullName,
   age,

@@ -11,7 +11,7 @@ const findUserServices = async (userId) => {
     for (let i of services) {
       const rating = await getServiceRating(i._id.toString());
       servicesInfos.push({ ...i._doc, serviceRating: rating });
-    }
+    } 
     return servicesInfos;
   }
   return null;

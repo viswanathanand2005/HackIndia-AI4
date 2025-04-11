@@ -7,5 +7,5 @@ const ChatModel = new Schema(
   },
   { timestamps: true }
 );
-
+ 
 module.exports = mongoose.model("chats", ChatModel);

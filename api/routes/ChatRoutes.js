@@ -17,7 +17,7 @@ route.get("/all", VerifyToken, async (req, res) => {
   } catch (error) {
     return res.json({ status: 505, msg: "Error Occured: " + error.message });
   }
-});
+}); 
 
 route.get("/messages/:chatId", VerifyToken, async (req, res) => {
   try {

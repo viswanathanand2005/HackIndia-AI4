@@ -10,6 +10,6 @@ const tokenVerification = (req, res, next) => {
     req.userId = user.userId;
     next();
   });
-};
+}; 
 
 module.exports = tokenVerification;

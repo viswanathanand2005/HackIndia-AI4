@@ -13,7 +13,7 @@ const findChat = async (senderId, receiverId) => {
   if (selectedReceiver != null && selectedSender != null) {
     const selectedChat = await Chat.findOne({
       between: { $all: [senderId, receiverId] },
-    });
+    }); 
     return selectedChat;
   }
   return "User doesn't exists";

@@ -18,7 +18,7 @@ MongoConnection();
 app.use("/user", userRoutes);
 app.use("/freelancer", freelancerRoutes);
 app.use("/client", clientRoutes);
-app.use("/chat", chatRoutes);
+app.use("/chat", chatRoutes); 
 
 app.use("/ProfilePic", express.static(__dirname + "/uploads/Users_imgs"));
 app.use("/ServicePic", express.static(__dirname + "/uploads/UsersServices"));

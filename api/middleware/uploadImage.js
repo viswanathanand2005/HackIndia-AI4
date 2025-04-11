@@ -11,11 +11,11 @@ const createProfileUploadImage = (req, res, next) => {
         mkdirSync("uploads/Users_imgs", { recursive: true });
       }
       cb(null, "uploads/Users_imgs");
-    },
+    }, 
     filename: (req, file, cb) => {
       cb(null, "ProfilePic_" + Date.now() + path.extname(file.originalname));
     },
-  });
+  }); 
 
   const fileFilter = (req, file, cb) => {
     if (imageTypes.includes(file.mimetype)) {
