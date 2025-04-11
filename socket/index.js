@@ -7,7 +7,7 @@ let users = [];
 const addUser = (userId, socketId) => {
   !users.some((user) => user.userId === userId) &&
     users.push({ userId, socketId });
-};
+}; // hi
 const removeUser = (socketId) => {
   users = users.filter((user) => user.socketId !== socketId);
 };
