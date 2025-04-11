@@ -61,7 +61,7 @@ export default function Chat({ type }) {
                 <div className="selectedMessages">
                   {selectedMessage == null ? <div className="nomessage">
                     <div className="title">
-                      WorkWonders
+                      MindLancers
                     </div>
                     <span>
                       Select A Message
@@ -75,7 +75,7 @@ export default function Chat({ type }) {
               <div className="zeroMessage">
                 {<div className="nomessage">
                   <div className="title">
-                    WorkWonders
+                    MindLancers
                   </div>
                   <span>
                     You have no messages for now

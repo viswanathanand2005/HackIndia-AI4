@@ -4,7 +4,7 @@ export default function SpecialFooter() {
         <div className="specialfooter">
             <footer>
                 <div className="copyright">
-                    Copyright Work Wonders ©2023 | All Rights Reserved
+                    Copyright MindLancers ©2025 | All Rights Reserved
                 </div>
                 <div className="socials">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
