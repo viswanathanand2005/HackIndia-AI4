@@ -3,7 +3,7 @@ import myAxios from "./myAxios";
 
 export const myDashboard = createAsyncThunk(
   "client/myDashboard",
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => { 
     try {
       const token = localStorage.getItem("token");
       const res = await myAxios.get("/client/dashboard", {

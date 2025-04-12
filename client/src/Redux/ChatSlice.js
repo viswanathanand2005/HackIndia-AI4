@@ -3,7 +3,7 @@ import myAxios from "./myAxios";
 
 export const myConversations = createAsyncThunk(
   "client/myConversations",
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => { 
     try {
       const token = localStorage.getItem("token");
       const res = await myAxios.get("/chat/all", {

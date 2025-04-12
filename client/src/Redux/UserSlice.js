@@ -8,7 +8,7 @@ export const tokenExists = async (stateToken, navigate, dispatch) => {
     const localStorageUser = JSON.parse(localStorage.getItem("userInfo"));
     if (localStorageToken) {
       dispatch(setToken(localStorageToken));
-      dispatch(setAvatar(localStorageUser.image));
+      dispatch(setAvatar(localStorageUser.image)); 
       dispatch(setUserId(localStorageUser._id));
       dispatch(setUserRole(localStorageUser.role));
       return true;
