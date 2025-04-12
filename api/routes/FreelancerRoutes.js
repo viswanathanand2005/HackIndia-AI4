@@ -52,30 +52,39 @@ route.get("/service/:idService", VerifyToken, async (req, res) => {
 
 route.post("/service", VerifyToken, createServiceUpload, async (req, res) => {
   try {
-    if (req.files.length == 0) {
-      return res.json({
-        msg: "You should select at least 3 images",
-        status: 400,
+    // Validate files
+    if (!req.files || req.files.length < 3) {
+      return res.status(400).json({
+        message: "At least 3 images are required"
       });
     }
-    const images = req.files.map((image) => image.filename);
+
     const { title, description, price } = req.body;
-    const createdService = await createService(
+    const images = req.files.map(file => file.filename);
+
+    const service = await createService({
       title,
       description,
       price,
-      req.userId,
+      userId: req.userId,
       images
-    );
-    if (createdService) {
-      return res.json({ msg: "Service Created Successfully", status: 200 });
+    });
+
+    if (!service) {
+      return res.status(409).json({
+        message: "Service with this title already exists"
+      });
     }
-    return res.json({
-      msg: "You Already Have This Service Gig",
-      status: 409,
+
+    return res.status(201).json({
+      ...service,
+      message: "Service created successfully"
     });
   } catch (error) {
-    return res.json({ status: 505, msg: "Error Occured: " + error.message });
+    console.error('Route error:', error);
+    return res.status(500).json({
+      message: error.message || "Service creation failed"
+    });
   }
 });
 
