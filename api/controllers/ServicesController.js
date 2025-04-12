@@ -2,6 +2,8 @@ const Service = require("../models/serviceModel");
 const { findUserById } = require("./UserController");
 const { getServiceRating } = require("./TestimonialsController");
 const { existsSync, unlinkSync } = require("fs");
+const { enhanceDescription } = require("../utils/aiService");
+
 
 const findUserServices = async (userId) => {
   const user = await findUserById(userId);
@@ -38,22 +40,49 @@ const findServices = async () => {
   return services;
 };
 
-const createService = async (title, description, price, userId, images) => {
-  const oldService = (await findServices()).find(
-    (service) => service.title == title && service.userId == userId
-  );
-  if (oldService) {
-    return null;
+const createService = async ({ title, description, price, userId, images }) => {
+  try {
+    // Validate inputs
+    if (!title || !description || price === undefined || !userId || !images) {
+      throw new Error('Missing required fields');
+    }
+
+    if (!Array.isArray(images) || images.length < 3) {
+      throw new Error('At least 3 images are required');
+    }
+
+    // Check for duplicate service
+    const existingService = await Service.findOne({ title, userId });
+    if (existingService) return null;
+
+    // Enhance description
+    let enhancedDesc = description;
+    try {
+      const { enhanced } = await enhanceDescription(description);
+      enhancedDesc = enhanced || description;
+    } catch (error) {
+      console.error('Description enhancement failed:', error);
+    }
+
+    // Create service
+    const service = await Service.create({
+      title,
+      description: enhancedDesc,
+      price,
+      images: images.join("|"),
+      userId
+    });
+
+    return {
+      ...service.toObject(),
+      wasEnhanced: enhancedDesc !== description
+    };
+  } catch (error) {
+    console.error('Service creation failed:', error);
+    throw error;
   }
-  const createdService = await Service.create({
-    title,
-    description: description,
-    price,
-    images: images.join("|"),
-    userId,
-  });
-  return createdService;
 };
+
 
 const updateService = async (
   title,
